@@ -1,0 +1,14 @@
+<!--
+  BreadcrumbComponent Template
+  Displays a breadcrumb navigation trail for the current page.
+-->
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-list">
+    <li *ngFor="let crumb of breadcrumbs; let last = last" class="breadcrumb-item" [class.active]="last" aria-current="page">
+      <ng-container *ngIf="!last && crumb.url; else lastCrumb">
+        <a [routerLink]="crumb.url">{{ crumb.label }}</a>
+      </ng-container>
+      <ng-template #lastCrumb>{{ crumb.label }}</ng-template>
+    </li>
+  </ol>
+</nav> 

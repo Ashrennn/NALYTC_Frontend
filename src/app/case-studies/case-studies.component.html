@@ -1,0 +1,17 @@
+<!--
+  CaseStudyComponent Template
+  Displays a list of Nalytc case studies in a modern, responsive layout.
+-->
+<app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+
+<div class="case-studies-container">
+  <h1 class="page-title">Case Studies</h1>
+  <div class="case-studies-list">
+    <div class="case-study-card" *ngFor="let study of caseStudies">
+      <h2 class="case-study-title">{{ study.title }}</h2>
+      <div class="case-study-section"><strong>Challenge:</strong> <span>{{ study.challenge }}</span></div>
+      <div class="case-study-section"><strong>Solution:</strong> <span>{{ study.solution }}</span></div>
+      <div class="case-study-section"><strong>Outcome:</strong> <span>{{ study.outcome }}</span></div>
+    </div>
+  </div>
+</div> 

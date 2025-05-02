@@ -1,0 +1,167 @@
+// Color Palette
+$primary-blue: #1a237e;
+$secondary-blue: #0d47a1;
+$light-blue: #2196f3;
+$accent-blue: #64b5f6;
+$dark-blue: #0d1b2a;
+
+.navbar {
+  background: $primary-blue;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-bottom: 2rem;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+
+    i {
+      color: $light-blue;
+      font-size: 1.8rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(15deg);
+      }
+    }
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+    align-self: center;
+
+    &:hover {
+      color: $light-blue;
+    }
+  }
+
+  .navbar-collapse {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &.show {
+      display: flex;
+    }
+  }
+
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+
+    .nav-item {
+      a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        display: block;
+
+        &:hover {
+          color: white;
+        }
+
+        &.active {
+          color: white;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: $light-blue;
+            border-radius: 1px;
+            transform: scaleX(1);
+            transition: transform 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 991.98px) {
+  .navbar {
+    .navbar-toggler {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0;
+    }
+
+    .navbar-collapse {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: $primary-blue;
+      padding: 1rem;
+      display: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &.show {
+        display: block;
+      }
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .nav-item {
+        a {
+          padding: 0.75rem 1rem;
+          display: block;
+          width: 100%;
+
+          &.active::after {
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+
+    .navbar-brand {
+      flex: 1 1 auto;
+    }
+  }
+} 
