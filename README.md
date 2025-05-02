@@ -42,7 +42,7 @@ src/app/
    Visit [http://localhost:4200](http://localhost:4200)
 
 ## 🧩 Main Technologies
-- Angular 15+ (standalone components)
+- Angular 19+ (standalone components)
 - SCSS (with device-specific files)
 - Font Awesome (icons)
 - Angular Router
