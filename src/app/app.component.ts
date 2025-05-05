@@ -19,16 +19,33 @@ import { FooterComponent } from './shared/footer/footer.component';
   `,
   styles: [`
     .app-container {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .app-content {
-      flex: 1;
-      padding: 2rem;
-    }
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .app-content {
+    position: relative;
+    flex: 1;
+    padding: 2rem;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .app-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('/assets/Main_Wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.6; /* Adjust transparency */
+    z-index: -1;
+  }
   `]
 })
 export class AppComponent {
   title = 'nalytc';
-} 
+}

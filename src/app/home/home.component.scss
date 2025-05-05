@@ -26,22 +26,81 @@ i {
 
 // Hero Section
 .hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
   text-align: center;
-  padding: 4rem 0;
-  background: linear-gradient(135deg, $gradient-start 0%, $gradient-end 100%);
-  border-radius: 1rem;
+  padding: 6rem 1rem 8rem;
+  background: linear-gradient(-45deg, #03336A, #1459DD, #02A290, #1459DD);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  border-radius: 0;
   margin-bottom: 4rem;
   color: white;
+  overflow: hidden;
+  z-index: 1;
+
+  // Animated binary overlay effect
+  &::before {
+    content: '0101011010100110011001110101001010101101010010010101010101010011';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    white-space: pre;
+    color: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+    animation: binaryScroll 30s linear infinite;
+    z-index: 0;
+    transform: rotate(-15deg);
+    filter: blur(2px);
+    background: transparent;
+  }
+
+  // Keyframe for background animation
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  // Binary scroll animation
+  @keyframes binaryScroll {
+    0% {
+      transform: translateY(0) rotate(-15deg);
+    }
+    100% {
+      transform: translateY(-100%) rotate(-15deg);
+    }
+  }
 
   i {
     color: white;
     font-size: 3rem;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
   }
 
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
   }
 
   p {
@@ -49,86 +108,369 @@ i {
     max-width: 800px;
     margin: 0 auto 2rem;
     opacity: 0.9;
+    position: relative;
+    z-index: 2;
   }
 
   .cta-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  // AI robot styling with dark effect and floating animation
+  .ai-robot {
+    position: absolute;
+    top: 30%;     // Center the robot vertically
+    right: 2%;  // Move it slightly out of view on the right
+    width: 450px; // Increase the size of the robot
+    z-index: 2;
+    opacity: 0.8;  // Slight transparency for a more subtle look
+    filter: brightness(0.6);  // Make the robot darker
+    animation: floatRobot 3s ease-in-out infinite alternate;
+    pointer-events: none;  // Ensures the image does not interfere with other content
+  }
+
+  // Floating animation for the robot
+  @keyframes floatRobot {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);  // Move the robot up
+    }
+    100% {
+      transform: translateY(0);  // Return to the original position
+    }
   }
 }
 
+
 // About Section
 .about {
+  position: relative;
   text-align: center;
   margin-bottom: 4rem;
+  padding: 4rem 1rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  animation: fadeSlideUp 1s ease-out both;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  z-index: 1;
+
+  // Base dark overlay for readability
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('/assets/Home.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // AI Gradient Animated Background Layer
+  &::before {
+    content: "";
+    position: absolute;
+    top: -99%;
+    left: -99%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      #1459dd,
+      #02a290,
+      #6b00b6,
+      #1459dd
+    );
+    opacity: 0.15;
+    animation: aiGradientSpin 20s linear infinite;
+    z-index: 0;
+    filter: blur(60px);
+  }
+
+  // Glow on text content
+  i, h2, p {
+    position: relative;
+    z-index: 2;
+  }
 
   i {
-    color: $primary-blue;
+    color: #ffffff;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   h2 {
-    color: $primary-blue;
-    margin-bottom: 1.5rem;
+    color: #ffffff;
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    animation: glowPulse 4s ease-in-out infinite alternate;
   }
 
   p {
     max-width: 800px;
     margin: 0 auto;
-    line-height: 1.6;
-    color: $dark-blue;
+    line-height: 1.8;
+    font-size: 1.15rem;
+    color: #f0f0f0;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+    animation: fadeGlowText 6s ease-in-out infinite alternate;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  i:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+}
+
+// Entry animation
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// AI spinning gradient
+@keyframes aiGradientSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Glow animations
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes fadeGlowText {
+  0% {
+    opacity: 0.8;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Entry animation
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Subtle animated light
+@keyframes subtleGlow {
+  0% {
+    background-position: 20% 30%, 80% 70%;
+  }
+  50% {
+    background-position: 25% 35%, 75% 65%;
+  }
+  100% {
+    background-position: 20% 30%, 80% 70%;
+  }
+}
+
+// Glow pulse for h2
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Gentle glow fade for p
+@keyframes fadeGlowText {
+  0% {
+    opacity: 0.8;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.3);
   }
 }
 
 // Services Section
 .services {
   margin-bottom: 4rem;
+  padding: 6rem 2rem;
+  background: rgba(255, 255, 255, 0.15); // semi-transparent white
+  backdrop-filter: blur(24px); // background blur
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 2rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 
   h2 {
     text-align: center;
     color: $primary-blue;
-    margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    animation: fadeInUp 0.8s ease-in-out both;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  .services-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
     gap: 2rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(20, 89, 221, 0.3);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
 
   .service-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    text-align: center;
+    width: 280px;
+    height: 360px;
+    flex-shrink: 0;
+    perspective: 1500px;
 
-    i {
-      color: $light-blue;
-      margin-bottom: 1rem;
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+      border-radius: 1.25rem;
+      will-change: transform;
     }
 
-    &:hover {
-      transform: translateY(-5px);
-      i {
+    &:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-front {
+      h3 {
         color: $primary-blue;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
       }
     }
 
-    h3 {
-      color: $primary-blue;
-      margin-bottom: 1rem;
-    }
+    .card-back {
+      transform: rotateY(180deg);
+      text-align: center;
 
-    p {
-      color: $dark-blue;
+      .service-icon {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+        animation: floatIcon 2s ease-in-out infinite alternate;
+      }
+
+      h3 {
+        color: $primary-blue;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: $dark-blue;
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  // Animations
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes floatIcon {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-8px);
     }
   }
 }
 
-// Advantages Section
+
 .advantages {
   margin-bottom: 4rem;
 
@@ -136,6 +478,7 @@ i {
     text-align: center;
     color: $primary-blue;
     margin-bottom: 2rem;
+    font-size: 3rem;
   }
 
   .advantages-grid {
@@ -145,24 +488,87 @@ i {
   }
 
   .advantage-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.6); // Brighter white base
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
     text-align: center;
-
-    i {
-      color: $accent-blue;
-      margin-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(16px); // Smoother glass effect
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #1459dd, #02a290, #1459dd);
+      animation: rotateBorder 6s linear infinite;
+      z-index: 0;
+      opacity: 0.05; // Less overpowering
     }
-
-    h3 {
+  
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(20, 89, 221, 0.15), 0 0 25px rgba(2, 162, 144, 0.1);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+  
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+  
+    i {
+      font-size: 2.5rem;
       color: $primary-blue;
       margin-bottom: 1rem;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
-
+  
+    h3 {
+      color: $primary-blue;
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+  
     p {
       color: $dark-blue;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+  
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  
+      &::after {
+        opacity: 1;
+      }
+  
+      i {
+        transform: scale(1.1);
+        text-shadow: 0 0 6px rgba(20, 89, 221, 0.3);
+      }
+    }
+  }
+  
+  @keyframes rotateBorder {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }
@@ -175,42 +581,88 @@ i {
     text-align: center;
     color: $primary-blue;
     margin-bottom: 2rem;
+    font-size: 3rem;
   }
 
   .impact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .impact-card {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.6); // Whiter glass
+    backdrop-filter: blur(16px);
+    border-radius: 1.25rem;
     padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-
-    i {
-      color: $light-blue;
-      margin-bottom: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      box-shadow: 0 0 20px rgba(20, 89, 221, 0.15), 0 0 30px rgba(2, 162, 144, 0.1);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
     }
-
-    h3 {
+  
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+  
+    i {
+      font-size: 2.5rem;
       color: $primary-blue;
       margin-bottom: 1rem;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
-
+  
+    h3 {
+      color: $primary-blue;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+  
     p {
       color: $dark-blue;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+  
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+  
+      &::after {
+        opacity: 1;
+      }
+  
+      i {
+        transform: scale(1.1);
+        text-shadow: 0 0 6px rgba(20, 89, 221, 0.3);
+      }
     }
   }
 }
+
+
 
 // Final CTA Section
 .final-cta {
   text-align: center;
   padding: 4rem 0;
-  background: linear-gradient(135deg, $gradient-start 0%, $gradient-end 100%);
+  background: #0d47a1;
   color: white;
   border-radius: 1rem;
 
@@ -240,11 +692,12 @@ i {
 
 // Buttons
 .primary-button {
-  background: white;
-  color: $primary-blue;
+  
+  background: transparent;
+  color: white;
   padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 0.5rem;
+  border: 2px solid white;
+  border-radius: 3rem;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -268,7 +721,7 @@ i {
   color: white;
   padding: 0.8rem 2rem;
   border: 2px solid white;
-  border-radius: 0.5rem;
+  border-radius: 3rem;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;

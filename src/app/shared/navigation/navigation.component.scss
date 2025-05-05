@@ -6,9 +6,10 @@ $accent-blue: #64b5f6;
 $dark-blue: #0d1b2a;
 
 .navbar {
-  background: $primary-blue;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #0d47a1;
+  padding: 1.25rem 0;
+  min-height: 80px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 0;
   left: 0;
@@ -19,43 +20,38 @@ $dark-blue: #0d1b2a;
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-  }
 
-  .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
+    // Force left align only the brand
+    .navbar-brand {
+      margin-left: 0;        // remove default spacing
+      padding-left: 0;       // remove padding
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
 
-    i {
-      color: $light-blue;
-      font-size: 1.8rem;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: rotate(15deg);
+      i {
+        color: whitesmoke;
+        font-size: 2rem;
       }
     }
   }
 
   .navbar-toggler {
-    margin-left: auto;
     display: none;
     background: none;
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     padding: 0.5rem;
-    transition: color 0.3s ease;
     align-self: center;
 
     &:hover {
@@ -67,10 +63,6 @@ $dark-blue: #0d1b2a;
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-
-    &.show {
-      display: flex;
-    }
   }
 
   .navbar-nav {
@@ -78,25 +70,31 @@ $dark-blue: #0d1b2a;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 1.5rem;
-
+    gap: 2rem;
+  
     .nav-item {
       a {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 0.75rem 1.25rem;
         transition: all 0.3s ease;
         position: relative;
         display: block;
-
+        border-radius: 0.75rem;
+  
         &:hover {
           color: white;
+          background: rgba(255, 255, 255, 0.08); // translucent background
+          backdrop-filter: blur(8px); // frosted glass effect
+          -webkit-backdrop-filter: blur(8px); // Safari support
+          box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
-
+  
         &.active {
           color: white;
-          
+  
           &::after {
             content: '';
             position: absolute;

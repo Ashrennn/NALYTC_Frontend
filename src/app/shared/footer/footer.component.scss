@@ -6,7 +6,7 @@ $accent-blue: #64b5f6;
 $dark-blue: #0d1b2a;
 
 .footer {
-  background: $primary-blue;
+  background: $secondary-blue;
   color: white;
   padding: 4rem 0 2rem;
   margin-top: 4rem;
@@ -32,7 +32,7 @@ $dark-blue: #0d1b2a;
     gap: 1.2rem;
 
     h3 {
-      color: $light-blue;
+      color: whitesmoke;
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
       position: relative;
