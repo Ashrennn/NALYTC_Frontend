@@ -2,71 +2,35 @@
   <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
   <!-- Hero Section -->
   <section class="hero">
-    <i class="fas fa-cogs"></i>
-    <h1>Our Services</h1>
-    <p class="subtitle">Comprehensive Infrastructure & AI Solutions</p>
+    <div class="hero-content">
+      <i class="fas fa-cogs"></i>
+      <h1>Our Services</h1>
+      <p class="subtitle">Comprehensive Infrastructure & AI Solutions</p>
+    </div>
   </section>
 
-  <!-- Main Services Grid -->
-  <section class="services-grid">
-    <!-- GPU-Accelerated Servers -->
-    <div class="service-card">
+  <!-- Main Services Carousel -->
+  <section class="services-carousel">
+    <button class="carousel-arrow left" (click)="prevCard()" aria-label="Previous Service">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="service-card" *ngIf="serviceCards.length" [ngClass]="animationClass">
       <div class="service-icon">
-        <i class="fas fa-microchip"></i>
+        <i [class]="serviceCards[currentIndex].icon"></i>
       </div>
-      <h2>GPU-Accelerated Servers</h2>
-      <p>High-performance computing environments optimized for AI workloads and complex simulations.</p>
+      <h2>{{ serviceCards[currentIndex].title }}</h2>
+      <p>{{ serviceCards[currentIndex].desc }}</p>
       <ul class="service-features">
-        <li><i class="fas fa-check"></i> Custom GPU configurations</li>
-        <li><i class="fas fa-check"></i> High-speed networking</li>
-        <li><i class="fas fa-check"></i> Advanced cooling solutions</li>
-        <li><i class="fas fa-check"></i> 24/7 monitoring</li>
+        <li *ngFor="let feature of serviceCards[currentIndex].features">
+          <i class="fas fa-check"></i> {{ feature }}
+        </li>
       </ul>
     </div>
-
-    <!-- LLM Training Pipelines -->
-    <div class="service-card">
-      <div class="service-icon">
-        <i class="fas fa-brain"></i>
-      </div>
-      <h2>LLM Training Pipelines</h2>
-      <p>End-to-end solutions for training and fine-tuning large language models.</p>
-      <ul class="service-features">
-        <li><i class="fas fa-check"></i> Distributed training setup</li>
-        <li><i class="fas fa-check"></i> Data preprocessing</li>
-        <li><i class="fas fa-check"></i> Model optimization</li>
-        <li><i class="fas fa-check"></i> Performance monitoring</li>
-      </ul>
-    </div>
-
-    <!-- Virtualized Developer Platforms -->
-    <div class="service-card">
-      <div class="service-icon">
-        <i class="fas fa-laptop-code"></i>
-      </div>
-      <h2>Virtualized Developer Platforms</h2>
-      <p>Secure, scalable environments for development and testing.</p>
-      <ul class="service-features">
-        <li><i class="fas fa-check"></i> Isolated workspaces</li>
-        <li><i class="fas fa-check"></i> Resource allocation</li>
-        <li><i class="fas fa-check"></i> Version control integration</li>
-        <li><i class="fas fa-check"></i> CI/CD pipelines</li>
-      </ul>
-    </div>
-
-    <!-- Enterprise Hosting -->
-    <div class="service-card">
-      <div class="service-icon">
-        <i class="fas fa-server"></i>
-      </div>
-      <h2>Enterprise Hosting</h2>
-      <p>Reliable, secure hosting solutions for mission-critical applications.</p>
-      <ul class="service-features">
-        <li><i class="fas fa-check"></i> High availability</li>
-        <li><i class="fas fa-check"></i> Security compliance</li>
-        <li><i class="fas fa-check"></i> Disaster recovery</li>
-        <li><i class="fas fa-check"></i> Performance optimization</li>
-      </ul>
+    <button class="carousel-arrow right" (click)="nextCard()" aria-label="Next Service">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="carousel-dots">
+      <span *ngFor="let card of serviceCards; let i = index" [class.active]="i === currentIndex"></span>
     </div>
   </section>
 
@@ -75,16 +39,19 @@
     <h2>Additional Services</h2>
     <div class="additional-grid">
       <div class="additional-card">
+        <img src="../../assets/Developer.jpg" alt="Security Consulting" class="additional-img" />
         <i class="fas fa-shield-alt"></i>
         <h3>Security Consulting</h3>
         <p>Comprehensive security assessments and implementation strategies.</p>
       </div>
       <div class="additional-card">
+        <img src="../../assets/Cloud.jpg" alt="Performance Optimization" class="additional-img" />
         <i class="fas fa-chart-line"></i>
         <h3>Performance Optimization</h3>
         <p>System tuning and optimization for maximum efficiency.</p>
       </div>
       <div class="additional-card">
+        <img src="../../assets/Infrastructure.jpg" alt="Technical Support" class="additional-img" />
         <i class="fas fa-hands-helping"></i>
         <h3>Technical Support</h3>
         <p>24/7 expert support and maintenance services.</p>
@@ -98,4 +65,4 @@
     <p>Contact us to discuss your specific needs and requirements.</p>
     <button class="cta-button">Get in Touch</button>
   </section>
-</div> 
+</div>
