@@ -5,7 +5,7 @@
  * Date: [Today's Date]
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, QueryList, ViewChildren, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -18,8 +18,10 @@ import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb
   templateUrl: './legal-compliance.component.html',
   styleUrls: ['./legal-compliance.component.scss']
 })
-export class LegalComplianceComponent implements OnInit {
+export class LegalComplianceComponent implements OnInit, AfterViewInit {
   breadcrumbs: Breadcrumb[] = [];
+  sectionVisible = [false, false, false];
+  @ViewChildren('legalSection') legalSectionElems!: QueryList<ElementRef>;
 
   constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
 
@@ -42,4 +44,19 @@ export class LegalComplianceComponent implements OnInit {
       { label: 'Legal & Compliance' }
     ];
   }
-} 
+
+  ngAfterViewInit(): void {
+    this.onScroll();
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll() {
+    if (!this.legalSectionElems) return;
+    this.legalSectionElems.forEach((elem, idx) => {
+      const rect = elem.nativeElement.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        this.sectionVisible[idx] = true;
+      }
+    });
+  }
+}
