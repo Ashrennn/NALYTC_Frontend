@@ -9,19 +9,36 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, RouterModule, BreadcrumbComponent],
+  imports: [CommonModule, RouterModule, BreadcrumbComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
   breadcrumbs: Breadcrumb[] = [];
+  contactForm: FormGroup;
+  formSubmitted = false;
+  formSuccess = false;
+  formError = false;
 
-  constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
+  constructor(
+    private title: Title,
+    private meta: Meta,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['', Validators.required],
+      message: ['', [Validators.required, Validators.minLength(10)]]
+    });
+  }
 
   ngOnInit(): void {
     // SEO
@@ -42,4 +59,46 @@ export class ContactUsComponent implements OnInit {
       { label: 'Contact Us' }
     ];
   }
-} 
+
+  onSubmit(): void {
+    this.formSubmitted = true;
+
+    if (this.contactForm.valid) {
+      // Here you would typically send the form data to your backend
+      console.log('Form submitted:', this.contactForm.value);
+
+      // Simulate API call
+      setTimeout(() => {
+        this.formSuccess = true;
+        this.contactForm.reset();
+        this.formSubmitted = false;
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          this.formSuccess = false;
+        }, 5000);
+      }, 1000);
+    } else {
+      this.formError = true;
+
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        this.formError = false;
+      }, 5000);
+    }
+  }
+
+  getErrorMessage(controlName: string): string {
+    const control = this.contactForm.get(controlName);
+    if (control?.hasError('required')) {
+      return 'This field is required';
+    }
+    if (control?.hasError('email')) {
+      return 'Please enter a valid email address';
+    }
+    if (control?.hasError('minlength')) {
+      return `Minimum length is ${control.errors?.['minlength'].requiredLength} characters`;
+    }
+    return '';
+  }
+}

@@ -7,45 +7,167 @@
 <div class="contact-us-container">
   <h1 class="page-title">Contact Us</h1>
 
-  <section class="contact-section">
-    <h2>Get in Touch</h2>
-    <p>We're here to support your infrastructure goals – whether you're scaling AI systems, optimizing developer platforms, or building custom compute environments.</p>
-  </section>
+  <div class="contact-grid">
+    <!-- Contact Information Section -->
+    <section class="contact-section info-section">
+      <div class="section-header">
+        <i class="fas fa-info-circle"></i>
+        <h2>Get in Touch</h2>
+      </div>
+      <p class="section-description">We're here to support your infrastructure goals – whether you're scaling AI systems, optimizing developer platforms, or building custom compute environments.</p>
 
-  <section class="contact-section">
-    <h2>General Inquiries</h2>
-    <p><strong>Email:</strong> <a href="mailto:info&#64;nalytc.dev">info&#64;nalytc.dev</a></p>
-    <p><strong>Address:</strong><br>
-      Nalytc GmbH<br>
-      DC Tower 1<br>
-      Donau-City-Straße 7, 30. Etage<br>
-      1220 Wien, Austria
-    </p>
-  </section>
+      <div class="contact-details">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:info&#64;nalytc.dev">info&#64;nalytc.dev</a>
+          </div>
+        </div>
 
-  <section class="contact-section">
-    <h2>Project Consultations</h2>
-    <p>For tailored discussions or consultations, contact us regarding:</p>
-    <ul>
-      <li>AI infrastructure planning</li>
-      <li>GPU server deployment</li>
-      <li>Cloud and virtualization strategy</li>
-      <li>Developer environment integration</li>
-      <li>Custom LLM training pipelines</li>
-    </ul>
-    <p>We typically respond within one business day.</p>
-  </section>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h3>Address</h3>
+            <p>Nalytc GmbH<br>
+            DC Tower 1<br>
+            Donau-City-Straße 7, 30. Etage<br>
+            1220 Wien, Austria</p>
+          </div>
+        </div>
 
-  <section class="contact-section">
-    <h2>Business Hours</h2>
-    <p>Monday–Friday: 09:00–18:00 CET<br>
-    Closed on weekends and Austrian public holidays.</p>
-  </section>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <h3>Business Hours</h3>
+            <p>Monday–Friday: 09:00–18:00 CET<br>
+            Closed on weekends and Austrian public holidays.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section class="contact-section">
-    <h2>Legal & Compliance</h2>
-    <p>Please review our:<br>
-      <a routerLink="/legal-compliance">Privacy Policy</a> | <a routerLink="/legal-compliance">Terms of Service</a> | <a routerLink="/legal-compliance">Acceptable Use Policy</a>
-    </p>
-  </section>
-</div> 
+    <!-- Contact Form Section -->
+    <section class="contact-section form-section">
+      <div class="section-header">
+        <i class="fas fa-paper-plane"></i>
+        <h2>Send us a Message</h2>
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            placeholder="Your name"
+            [class.error]="formSubmitted && contactForm.get('name')?.invalid">
+          <div class="error-message" *ngIf="formSubmitted && contactForm.get('name')?.invalid">
+            {{ getErrorMessage('name') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Your email"
+            [class.error]="formSubmitted && contactForm.get('email')?.invalid">
+          <div class="error-message" *ngIf="formSubmitted && contactForm.get('email')?.invalid">
+            {{ getErrorMessage('email') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select
+            id="subject"
+            formControlName="subject"
+            [class.error]="formSubmitted && contactForm.get('subject')?.invalid">
+            <option value="">Select a subject</option>
+            <option value="general">General Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="sales">Sales</option>
+            <option value="partnership">Partnership</option>
+          </select>
+          <div class="error-message" *ngIf="formSubmitted && contactForm.get('subject')?.invalid">
+            {{ getErrorMessage('subject') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="5"
+            placeholder="Your message"
+            [class.error]="formSubmitted && contactForm.get('message')?.invalid"></textarea>
+          <div class="error-message" *ngIf="formSubmitted && contactForm.get('message')?.invalid">
+            {{ getErrorMessage('message') }}
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="formSubmitted">
+          <i class="fas fa-paper-plane"></i>
+          {{ formSubmitted ? 'Sending...' : 'Send Message' }}
+        </button>
+
+        <!-- Success Message -->
+        <div class="alert success" *ngIf="formSuccess">
+          <i class="fas fa-check-circle"></i>
+          Thank you for your message! We'll get back to you soon.
+        </div>
+
+        <!-- Error Message -->
+        <div class="alert error" *ngIf="formError">
+          <i class="fas fa-exclamation-circle"></i>
+          Please check the form for errors and try again.
+        </div>
+      </form>
+    </section>
+
+    <!-- Map Section -->
+    <section class="contact-section map-section">
+      <div class="section-header">
+        <i class="fas fa-map-marked-alt"></i>
+        <h2>Find Us</h2>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.8004906026357!2d16.4142993!3d48.2331063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d0657f0c0b8c9%3A0x3a8a6d7c0b0b0b0b!2sDC%20Tower%201!5e0!3m2!1sen!2sat!4v1620000000000!5m2!1sen!2sat"
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Legal Links Section -->
+    <section class="contact-section legal-section">
+      <div class="section-header">
+        <i class="fas fa-shield-alt"></i>
+        <h2>Legal & Compliance</h2>
+      </div>
+      <div class="legal-links">
+        <a routerLink="/legal-compliance" class="legal-link">
+          <i class="fas fa-file-contract"></i>
+          Privacy Policy
+        </a>
+        <a routerLink="/legal-compliance" class="legal-link">
+          <i class="fas fa-gavel"></i>
+          Terms of Service
+        </a>
+        <a routerLink="/legal-compliance" class="legal-link">
+          <i class="fas fa-user-shield"></i>
+          Acceptable Use Policy
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
