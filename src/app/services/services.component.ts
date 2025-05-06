@@ -5,7 +5,7 @@
  * Date: [Today's Date]
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -19,8 +19,59 @@ import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent implements OnInit, OnDestroy {
   breadcrumbs: Breadcrumb[] = [];
+
+  // Carousel logic
+  serviceCards = [
+    {
+      icon: 'fas fa-microchip',
+      title: 'GPU-Accelerated Servers',
+      desc: 'High-performance computing environments optimized for AI workloads and complex simulations.',
+      features: [
+        'Custom GPU configurations',
+        'High-speed networking',
+        'Advanced cooling solutions',
+        '24/7 monitoring',
+      ],
+    },
+    {
+      icon: 'fas fa-brain',
+      title: 'LLM Training Pipelines',
+      desc: 'End-to-end solutions for training and fine-tuning large language models.',
+      features: [
+        'Distributed training setup',
+        'Data preprocessing',
+        'Model optimization',
+        'Performance monitoring',
+      ],
+    },
+    {
+      icon: 'fas fa-laptop-code',
+      title: 'Virtualized Developer Platforms',
+      desc: 'Secure, scalable environments for development and testing.',
+      features: [
+        'Isolated workspaces',
+        'Resource allocation',
+        'Version control integration',
+        'CI/CD pipelines',
+      ],
+    },
+    {
+      icon: 'fas fa-server',
+      title: 'Enterprise Hosting',
+      desc: 'Reliable, secure hosting solutions for mission-critical applications.',
+      features: [
+        'High availability',
+        'Security compliance',
+        'Disaster recovery',
+        'Performance optimization',
+      ],
+    },
+  ];
+  currentIndex = 0;
+  intervalId: any;
+  animationClass = '';
 
   constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
 
@@ -47,5 +98,29 @@ export class ServicesComponent implements OnInit {
     this.breadcrumbs = [
       { label: this.route.snapshot.data['breadcrumb'] }
     ];
+
+    this.startAutoSlide();
   }
-} 
+
+  ngOnDestroy(): void {
+    if (this.intervalId) clearInterval(this.intervalId);
+  }
+
+  startAutoSlide() {
+    this.intervalId = setInterval(() => {
+      this.nextCard();
+    }, 4000); // 4 seconds
+  }
+
+  nextCard() {
+    this.animationClass = 'slide-in-right';
+    setTimeout(() => { this.animationClass = ''; }, 700);
+    this.currentIndex = (this.currentIndex + 1) % this.serviceCards.length;
+  }
+
+  prevCard() {
+    this.animationClass = 'slide-in-left';
+    setTimeout(() => { this.animationClass = ''; }, 700);
+    this.currentIndex = (this.currentIndex - 1 + this.serviceCards.length) % this.serviceCards.length;
+  }
+}
