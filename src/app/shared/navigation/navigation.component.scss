@@ -6,16 +6,18 @@ $accent-blue: #64b5f6;
 $dark-blue: #0d1b2a;
 
 .navbar {
-  background: #0d47a1;
+  background: rgba(255, 255, 255, 0.6); // Light glassy white
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); // Safari support
   padding: 1.25rem 0;
   min-height: 80px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
   .container {
     max-width: 1200px;
@@ -25,20 +27,17 @@ $dark-blue: #0d1b2a;
     justify-content: space-between;
     align-items: center;
 
-    // Force left align only the brand
     .navbar-brand {
-      margin-left: 0;        // remove default spacing
-      padding-left: 0;       // remove padding
       font-size: 2rem;
       font-weight: bold;
-      color: white;
+      color: #1a237e; // Deep blue text
       display: flex;
       align-items: center;
       gap: 0.5rem;
       text-decoration: none;
 
       i {
-        color: whitesmoke;
+        color: #1459dd;
         font-size: 2rem;
       }
     }
@@ -48,15 +47,10 @@ $dark-blue: #0d1b2a;
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: #1a237e;
     font-size: 1.8rem;
     cursor: pointer;
     padding: 0.5rem;
-    align-self: center;
-
-    &:hover {
-      color: $light-blue;
-    }
   }
 
   .navbar-collapse {
@@ -71,30 +65,31 @@ $dark-blue: #0d1b2a;
     margin: 0;
     padding: 0;
     gap: 2rem;
-  
+
     .nav-item {
       a {
-        color: rgba(255, 255, 255, 0.85);
+        color: #1e1e1e; // Smooth dark for readability
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 600;
-        padding: 0.75rem 1.25rem;
-        transition: all 0.3s ease;
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.75rem;
+        transition: all 0.35s ease;
         position: relative;
         display: block;
-        border-radius: 0.75rem;
-  
+
         &:hover {
-          color: white;
-          background: rgba(255, 255, 255, 0.08); // translucent background
-          backdrop-filter: blur(8px); // frosted glass effect
-          -webkit-backdrop-filter: blur(8px); // Safari support
-          box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+          background: rgba(20, 89, 221, 0.15); // Blue translucent on hover
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          color: #1459dd;
+          box-shadow: 0 4px 12px rgba(20, 89, 221, 0.2);
         }
-  
+
         &.active {
-          color: white;
-  
+          color: #1459dd;
+          font-weight: 700;
+
           &::after {
             content: '';
             position: absolute;
@@ -102,7 +97,7 @@ $dark-blue: #0d1b2a;
             left: 1rem;
             right: 1rem;
             height: 2px;
-            background: $light-blue;
+            background: #1459dd;
             border-radius: 1px;
             transform: scaleX(1);
             transition: transform 0.3s ease;
