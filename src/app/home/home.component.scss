@@ -122,8 +122,8 @@ i {
     padding-right: 2rem; // add some extra push to the edge
 
     .ai-robot {
-      width: 100%;
-      max-width: 500px;
+      width: 900%;
+      max-width: 450px;
       animation: floatRobot 3s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 20px rgba(20, 89, 221, 0.4));
       z-index: 2;
