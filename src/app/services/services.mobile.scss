@@ -8,4 +8,9 @@
   .services-container {
     padding: 1rem;
   }
+  .additional-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 } 
