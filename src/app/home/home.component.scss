@@ -52,12 +52,14 @@ i {
       font-size: clamp(2rem, 4vw + 1rem, 3rem);
       font-weight: 700;
       color: #0d47a1;
+      margin-top: -0.3rem;
     }
 
     p {
       font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
       color: #333;
       line-height: 1.6;
+      margin-top: -2.5rem;
     }
 
     .cta-buttons {
@@ -122,7 +124,7 @@ i {
     padding-right: 2rem; // add some extra push to the edge
 
     .ai-robot {
-      width: 900%;
+      width: 90%;
       max-width: 450px;
       animation: floatRobot 3s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 20px rgba(20, 89, 221, 0.4));
@@ -189,6 +191,7 @@ i {
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
+            margin-top:2rem;
       }
     }
   }
