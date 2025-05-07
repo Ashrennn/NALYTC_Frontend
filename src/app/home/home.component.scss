@@ -49,13 +49,13 @@ i {
     }
 
     h1 {
-      font-size: 2.75rem;
+      font-size: clamp(2rem, 4vw + 1rem, 3rem);
       font-weight: 700;
       color: #0d47a1;
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
       color: #333;
       line-height: 1.6;
     }
@@ -219,7 +219,7 @@ i {
 
   h2 {
     color: #ffffff;
-    font-size: 2.9rem;
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 2.9rem);
     font-weight: 800;
     margin-bottom: 3rem;
     margin-top: -0.2rem;
@@ -231,7 +231,7 @@ i {
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.8;
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
     color: #f0f0f0;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
     animation: fadeGlowText 6s ease-in-out infinite alternate;
@@ -335,7 +335,7 @@ i {
   h2 {
     text-align: center;
     color: $primary-blue;
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
     font-weight: 800;
     margin-bottom: 4rem;
     animation: fadeInUp 0.8s ease-in-out both;
@@ -393,14 +393,14 @@ i {
     .service-content {
       h3 {
         color: $primary-blue;
-        font-size: 1.5rem;
+        font-size: clamp(1.1rem, 1.5vw + 1rem, 1.5rem);
         font-weight: 700;
         margin-bottom: 0.5rem;
       }
 
       p {
         color: #333;
-        font-size: 1.05rem;
+        font-size: clamp(1rem, 1vw + 0.8rem, 1.05rem);
         line-height: 1.5;
       }
     }
@@ -452,7 +452,7 @@ i {
     color: $primary-blue;
     margin-bottom: 4rem;
     padding: 1rem 1rem;
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
   }
 
   .advantages-grid {
@@ -511,14 +511,14 @@ i {
   
     h3 {
       color: $primary-blue;
-      font-size: 1.45rem;
+      font-size: clamp(1.1rem, 1.5vw + 1rem, 1.45rem);
       font-weight: 700;
       margin-bottom: 1rem;
     }
   
     p {
       color: $dark-blue;
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 1vw + 0.8rem, 1.05rem);
       line-height: 1.6;
     }
   
@@ -556,7 +556,7 @@ i {
     color: $primary-blue;
     margin-bottom: 4rem;
     padding: 1rem;
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
   }
 
   .impact-grid {
@@ -631,14 +631,14 @@ i {
 
     h3 {
       color: $primary-blue;
-      font-size: 1.5rem;
+      font-size: clamp(1.1rem, 1.5vw + 1rem, 1.5rem);
       font-weight: 700;
       margin-bottom: 1rem;
     }
 
     p {
       color: $dark-blue;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
       line-height: 1.6;
     }
 
@@ -683,12 +683,12 @@ i {
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 2vw + 1rem, 2rem);
     margin-bottom: 1rem;
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.2rem);
     margin-bottom: 2rem;
     opacity: 0.9;
   }

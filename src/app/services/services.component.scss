@@ -37,14 +37,14 @@ $icon-accent: #90caf9;
   }
 
   h1 {
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
     margin-bottom: -1rem;
     margin-top: -0.2rem;
     color: $primary-blue;
   }
 
   .subtitle {
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 2vw + 0.5rem, 1.4rem);
     opacity: 0.9;
     color: $primary-blue;
   }
@@ -120,13 +120,14 @@ $icon-accent: #90caf9;
 
   h2 {
     color: $primary-blue;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2vw + 1rem, 1.5rem);
     margin-bottom: 1rem;
     text-align: center;
   }
 
   p {
     color: $dark-blue;
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
@@ -173,7 +174,7 @@ $icon-accent: #90caf9;
   h2 {
     text-align: center;
     color: $primary-blue;
-    font-size: 2.6rem;
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 2.6rem);
     margin-bottom: 4rem;
   }
 
@@ -207,11 +208,13 @@ $icon-accent: #90caf9;
     h3 {
       color: $primary-blue;
       margin-bottom: 1rem;
+      font-size: clamp(1.1rem, 1.5vw + 1rem, 1.4rem);
     }
 
     p {
       color: $dark-blue;
       line-height: 1.6;
+      font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
     }
   }
 }
@@ -248,7 +251,7 @@ $icon-accent: #90caf9;
     text-align: center;
 
     h2 {
-      font-size: 2.9rem;
+      font-size: clamp(1.5rem, 2.5vw + 1rem, 2.9rem);
       font-weight: 700;
       color: #1459DD;
       margin-bottom: 1rem;
@@ -259,7 +262,7 @@ $icon-accent: #90caf9;
     }
 
     p {
-      font-size: 1.15rem;
+      font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
       color: #333;
       margin-bottom: 2rem;
     }
