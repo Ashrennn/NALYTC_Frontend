@@ -5,6 +5,16 @@ $light-blue: #2196f3;
 $accent-blue: #64b5f6;
 $dark-blue: #0d1b2a;
 
+.logo-link {
+  display: block;
+  cursor: pointer;
+}
+
+.logo-image {
+  height: 75px;
+  width: auto;
+}
+
 .navbar {
   background: rgba(255, 255, 255, 0.6); // Light glassy white
   backdrop-filter: blur(12px);
