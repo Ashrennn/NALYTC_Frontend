@@ -15,7 +15,7 @@
     </div>
   
     <div class="hero-right">
-      <img src="/assets/AI_robot.png" alt="AI Robot" class="ai-robot" />
+      <img src="/assets/AI_robot2.png" alt="AI Robot" class="ai-robot" />
     </div>
   </section>
 
@@ -26,58 +26,29 @@
   </section>
 
   <!-- What We Offer -->
-  <section class="services">
+  <section class="services offer-carousel-section">
     <h2>What We Offer</h2>
-  
-    <div class="services-group split-layout">
-      <!-- Left Column -->
-      <div class="column left">
-        <div class="service-card">
-          <img src="/assets/AI_Systems.jpg" alt="AI Systems" class="service-icon" />
-          <div class="service-content">
-            <h3>AI Systems & Intelligence</h3>
-            <p>Design and deployment of custom AI infrastructure, model workflows, and real-time inference pipelines.</p>
-          </div>
-        </div>
-  
-        <div class="service-card">
-          <img src="/assets/Infrastructure.jpg" alt="Infrastructure" class="service-icon" />
-          <div class="service-content">
-            <h3>I/O Infrastructure Engineering</h3>
-            <p>High-speed networking, rack design, power optimization, and storage solutions tailored for extreme environments.</p>
-          </div>
+    <div class="offer-carousel" [ngClass]="{'slide-left': slideDirection === 'left', 'slide-right': slideDirection === 'right'}">
+      <div class="offer-silhouette offer-silhouette-left">
+        <img [src]="offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].image" alt="Previous offer" class="offer-image-silhouette" />
+        <div class="offer-title-silhouette">{{ offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].title }}</div>
+      </div>
+      <button class="carousel-arrow left" (click)="prevOffer()" aria-label="Previous offering">&#8592;</button>
+      <div class="offer-card" [ngClass]="{'slide-left': slideDirection === 'left', 'slide-right': slideDirection === 'right'}">
+        <img [src]="offerSlides[currentOffer].image" alt="Offering image" class="offer-image" />
+        <div class="offer-content">
+          <h3 class="offer-title">{{ offerSlides[currentOffer].title }}</h3>
+          <p class="offer-description">{{ offerSlides[currentOffer].description }}</p>
         </div>
       </div>
-  
-      <!-- Right Column -->
-      <div class="column right">
-        <div class="service-card">
-          <img src="/assets/Developer.jpg" alt="Developer Platform" class="service-icon" />
-          <div class="service-content">
-            <h3>Developer Platforms</h3>
-            <p>Virtualized, GPU-powered environments with preconfigured toolchains – accessible anywhere, built for productivity.</p>
-          </div>
-        </div>
-  
-        <div class="service-card">
-          <img src="/assets/Cloud.jpg" alt="Cloud Hosting & Virtualization" class="service-icon" />
-          <div class="service-content">
-            <h3>Cloud Hosting & Virtualization</h3>
-            <p>Private cloud, virtual machines, and containerized services backed by resilient hardware and proactive support.</p>
-          </div>
-        </div>
+      <button class="carousel-arrow right" (click)="nextOffer()" aria-label="Next offering">&#8594;</button>
+      <div class="offer-silhouette offer-silhouette-right">
+        <img [src]="offerSlides[(currentOffer + 1) % offerSlides.length].image" alt="Next offer" class="offer-image-silhouette" />
+        <div class="offer-title-silhouette">{{ offerSlides[(currentOffer + 1) % offerSlides.length].title }}</div>
       </div>
     </div>
-  
-    <!-- Bottom Centered Card -->
-    <div class="services-group bottom-center">
-      <div class="service-card">
-        <img src="/assets/Training.jpg" alt="LLM Training & Optimization" class="service-icon" />
-        <div class="service-content">
-          <h3>LLM Training & Optimization</h3>
-          <p>End-to-end fine-tuning, dataset engineering, and deployment support for large language models and generative AI systems.</p>
-        </div>
-      </div>
+    <div class="offer-dots">
+      <span *ngFor="let o of offerSlides; let i = index" class="dot" [class.active]="i === currentOffer" (click)="currentOffer = i"></span>
     </div>
   </section>
 
