@@ -52,6 +52,7 @@ i {
       font-size: clamp(2rem, 4vw + 1rem, 3rem);
       font-weight: 700;
       color: #0d47a1;
+      
     }
 
     p {
@@ -64,6 +65,7 @@ i {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      margin-bottom: 7.5%;
 
       button {
         background: linear-gradient(135deg, #bad0f0, #3E8BFF);
@@ -123,7 +125,7 @@ i {
 
     .ai-robot {
       width: 100%;
-      max-width: 500px;
+      max-width: 450px;
       animation: floatRobot 3s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 20px rgba(20, 89, 221, 0.4));
       z-index: 2;
@@ -158,9 +160,13 @@ i {
     .hero-left {
       padding-top: 0;
 
-      h1,
+      h1{
+        text-align: center;
+        margin-bottom: -5%;
+      }
       p {
         text-align: center;
+        margin-bottom: 5%;
       }
 
       .cta-buttons {
@@ -171,10 +177,11 @@ i {
     .hero-right {
       margin-top: 2rem;
       padding-right: 0;
-
+    
       .ai-robot {
         max-width: 80%;
-        margin-left: 100px;
+        margin: 0 auto; // centers horizontally
+        display: block; // ensures it's treated like a block-level element
       }
     }
   }
@@ -225,6 +232,18 @@ i {
     margin-top: -0.2rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     animation: glowPulse 4s ease-in-out infinite alternate;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: white;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   p {
@@ -340,6 +359,18 @@ i {
     margin-bottom: 4rem;
     animation: fadeInUp 0.8s ease-in-out both;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: $primary-blue;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   .services-group.split-layout {
@@ -445,34 +476,79 @@ i {
 
 
 .advantages {
+  position: relative;
   margin-bottom: 4rem;
+  padding: 5rem 2rem;
+  overflow: visible;
+
+  // Inner container to restrict cards width
+  .advantages-inner {
+    max-width: 1200px;  // or your preferred max width
+    margin: 0 auto;
+  }
+
+  // Full width background with dark overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background-image: url('/assets/AI_Strategic.jpg'); // adjust path
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.45); // darken background
+    z-index: 0;
+  }
 
   h2 {
+    position: relative;
     text-align: center;
-    color: $primary-blue;
-    margin-bottom: 4rem;
+    color: white;
+    margin-top: -3rem;
     padding: 1rem 1rem;
     font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
+    z-index: 1;
+    /* Remove or fix this invalid line */
+    /* margin */
+  
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: white;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   .advantages-grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    z-index: 1;
   }
 
   .advantage-card {
-    background: rgba(255, 255, 255, 0.6); // Brighter white base
+    background: #7388fd1c;
     border-radius: 1rem;
     padding: 2.5rem 2rem;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(16px); // Smoother glass effect
+    box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
+    backdrop-filter: blur(16px);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.5);
-  
+    z-index: 1;
+
     &::before {
       content: "";
       position: absolute;
@@ -483,9 +559,9 @@ i {
       background: conic-gradient(from 180deg at 50% 50%, #1459dd, #02a290, #1459dd);
       animation: rotateBorder 6s linear infinite;
       z-index: 0;
-      opacity: 0.05; // Less overpowering
+      opacity: 0.05;
     }
-  
+
     &::after {
       content: "";
       position: absolute;
@@ -496,47 +572,47 @@ i {
       transition: opacity 0.4s ease;
       z-index: 0;
     }
-  
+
     & > * {
       position: relative;
       z-index: 1;
     }
-  
+
     i {
       font-size: 2.5rem;
-      color: $primary-blue;
+      color: white;
       margin-bottom: 1rem;
       transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
-  
+
     h3 {
-      color: $primary-blue;
+      color: white;
       font-size: clamp(1.1rem, 1.5vw + 1rem, 1.45rem);
       font-weight: 700;
       margin-bottom: 1rem;
     }
-  
+
     p {
-      color: $dark-blue;
+      color: white;
       font-size: clamp(1rem, 1vw + 0.8rem, 1.05rem);
       line-height: 1.6;
     }
-  
+
     &:hover {
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  
+
       &::after {
         opacity: 1;
       }
-  
+
       i {
         transform: scale(1.1);
         text-shadow: 0 0 6px rgba(20, 89, 221, 0.3);
       }
     }
   }
-  
+
   @keyframes rotateBorder {
     0% {
       transform: rotate(0deg);
@@ -557,6 +633,18 @@ i {
     margin-bottom: 4rem;
     padding: 1rem;
     font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: $primary-blue;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   .impact-grid {
@@ -575,11 +663,11 @@ i {
   }
 
   .impact-card {
-    background: rgba(255, 255, 255, 0.6);
+    background: #7388fd1c;
     border-radius: 1rem;
     padding: 2.5rem 2rem;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
     backdrop-filter: blur(16px);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     overflow: hidden;

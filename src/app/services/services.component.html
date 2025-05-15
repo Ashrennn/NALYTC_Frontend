@@ -2,6 +2,7 @@
   <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Our Services</h1>
       <p class="subtitle">Comprehensive Infrastructure & AI Solutions</p>
@@ -35,22 +36,32 @@
 
   <!-- Additional Services -->
   <section class="additional-services">
-    <h2>Additional Services</h2>
-    <div class="additional-grid">
-      <div class="additional-card">
-        <img src="../../assets/Developer.jpg" alt="Security Consulting" class="additional-img" />
-        <h3>Security Consulting</h3>
-        <p>Comprehensive security assessments and implementation strategies.</p>
-      </div>
-      <div class="additional-card">
-        <img src="../../assets/Cloud.jpg" alt="Performance Optimization" class="additional-img" />
-        <h3>Performance Optimization</h3>
-        <p>System tuning and optimization for maximum efficiency.</p>
-      </div>
-      <div class="additional-card">
-        <img src="../../assets/Infrastructure.jpg" alt="Technical Support" class="additional-img" />
-        <h3>Technical Support</h3>
-        <p>24/7 expert support and maintenance services.</p>
+    <div class="content-container">
+      <h2>Additional Services</h2>
+      <div class="additional-grid">
+        <div class="info-panel">
+          <div class="card-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Security Consulting</h3>
+          <p>Comprehensive security assessments and implementation strategies to ensure safety at every layer.</p>
+        </div>
+  
+        <div class="info-panel">
+          <div class="card-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>Performance Optimization</h3>
+          <p>Advanced system tuning, performance audits, and AI-driven enhancements for maximum output.</p>
+        </div>
+  
+        <div class="info-panel">
+          <div class="card-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Technical Support</h3>
+          <p>24/7 assistance with predictive maintenance and fast-resolution pathways for technical issues.</p>
+        </div>
       </div>
     </div>
   </section>

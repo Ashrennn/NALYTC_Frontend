@@ -8,37 +8,77 @@
 @use './contact-us.tablet.scss' as *;
 @use './contact-us.desktop.scss' as *;
 
-.contact-us-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-}
-
 .page-title {
-  text-align: center;
-  color: var(--primary-blue, #1a237e);
-  margin-bottom: 3rem;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
   position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  padding: 7rem 2rem;
+  text-align: center;
+  box-sizing: border-box;
+  margin-bottom: .01rem;
+  margin-top: -0.1rem;
+  color: white;
+  font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  z-index: 1;
+
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('/assets/AI_Contact.jpg') center center / cover no-repeat;
+    opacity: 0.75;
+    filter: brightness(0.5);
+    z-index: 0;
+    margin-top: -1%;
+    margin-bottom: -0.5%;
+  }
+
+  > span {
+    position: relative;
+    z-index: 2;
+  }
 
   &::after {
     content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: 1rem auto 0;
     width: 80px;
     height: 4px;
     background: linear-gradient(90deg, #2196f3, #64b5f6);
     border-radius: 2px;
   }
-}
 
+  @media (max-width: 600px) {
+    .page-title {
+      padding: 4rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  
+    .page-title::after {
+      width: 60px;
+    }
+  }
+  
+  /* Tablets */
+  @media (min-width: 601px) and (max-width: 992px) {
+    .page-title {
+      padding: 5rem 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 2.75rem;
+    }
+  
+    .page-title::after {
+      width: 70px;
+    }
+  }
+}
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

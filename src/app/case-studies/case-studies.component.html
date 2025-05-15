@@ -4,7 +4,7 @@
 -->
 <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
 
-<h1 class="page-title">Case Studies</h1>
+<h1 class="page-title"><span>Case Studies</span></h1>
 <div class="case-studies-list">
   <div class="case-study-card" *ngFor="let study of caseStudies; let i = index" #caseCard [ngClass]="{'show-on-scroll': study.visible}">
     <img [src]="study.image" [alt]="study.title" class="case-study-img" />

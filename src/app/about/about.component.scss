@@ -22,26 +22,41 @@ $icon-accent: #90caf9;
 
 // Hero Section
 .hero {
-  width: 100%;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
   padding: 7rem 2rem;
-  background: white;
   text-align: center;
   box-sizing: border-box;
   margin-bottom: 4rem;
-  color: $primary-blue;
+  overflow: hidden;
 
-  i {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    color: $primary-blue;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('/assets/AI_About.jpg') center center / cover no-repeat;
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 
   h1 {
     font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
     margin-bottom: -1rem;
     margin-top: -0.2rem;
-    color: $primary-blue;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
   }
+
   .highlighted {
     background-color: $primary-blue;
     color: white;
@@ -50,35 +65,26 @@ $icon-accent: #90caf9;
   }
 
   .subtitle {
-    font-size: clamp(1.1rem, 2vw + 0.5rem, 1.4rem);
-    opacity: 0.9;
-    color: $primary-blue;
-  }
-  
-
-  .hero-bg {
-    display: none; // remove background image layer
-
-
+    font-size: clamp(1.2rem, 2.5vw + 0.5rem, 1.6rem);
+    color: #fff;
+    opacity: 1;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
   }
 
-  > *:not(.hero-bg) {
-    position: relative;
-    z-index: 1;
-  }
   &::after {
     content: "";
     display: block;
-    width: 100%;
+    width: 5%;
     height: 4px;
-    background-color: $primary-blue;
+    background-color: white;
     margin: 0.75rem auto 0 auto;
     border-radius: 2px;
+    position: relative;
+    z-index: 1;
   }
-
-  
 }
-
 // Content Wrapper
 .content-wrapper {
   max-width: 800px;
@@ -88,91 +94,170 @@ $icon-accent: #90caf9;
 
 // Overview Section
 .overview {
-  margin-bottom: 4rem;
+  position: relative;
+  margin: 4rem auto;
+  padding: 5rem 3rem;
+  max-width: 900px;
   text-align: center;
-  position: relative;
-  padding: 4rem 2rem;
-  color: white;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    url('/assets/AI_Company.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  border-radius: 2rem;
+  overflow: hidden;
 
-  // Full width overflow
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  // Removed background and blur
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  // Optional: Keep or tone down shadow
+  box-shadow: none;
+
+  color: white;
+  transition: all 0.3s ease-in-out;
+
+  // Optional: Keep background accents or remove for full transparency
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(0, 128, 255, 0.15), transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(75, 106, 243, 0.1), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(19, 78, 240, 0.1), transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  h2, p {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: none;
+  }
 
   h2 {
-    color: white;
-    margin-bottom: 2rem;
-    font-size: clamp(1.5rem, 2.5vw + 1rem, 2.9rem);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    font-size: clamp(1.8rem, 2.5vw + 1rem, 3rem);
+    margin-bottom: 1.5rem;
+    color: $primary-blue;
+    text-shadow: 0 2px 8px rgba(42, 59, 209, 0.356);
+    margin-top: -5%;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 15%;
+      height: 4px;
+      background-color: $primary-blue;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   p {
-    color: white;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1rem, 1vw + 0.6rem, 1.2rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #333;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    padding: 4rem 2rem;
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: -2%;
+    }
+
+    p {
+      font-size: 1rem;
+      max-width: 90%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 3rem 1rem;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
   }
 }
-
 // Philosophy Section
 .philosophy {
   padding: 5rem 2rem;
   margin-bottom: 4rem;
   position: relative;
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 12px 48px rgba(20, 89, 221, 0.12);
-  backdrop-filter: blur(20px) saturate(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  overflow: hidden;
+  overflow: visible;
   text-align: center;
 
+  // Full viewport width overflow
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
+  // Background image
+  background-image: url('/assets/AI_Company.jpg'); // Update path as needed
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // Remove blur and box-shadow
+  box-shadow: none;
+  backdrop-filter: none;
+  border: none;
+
   &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(20, 89, 221, 0.1), transparent 70%);
-    z-index: 0;
+    display: none; // Remove the radial overlay
   }
 
   h2 {
-    color: $primary-blue;
+    color: whitesmoke;
     font-size: clamp(1.5rem, 2.5vw + 1rem, 2.8rem);
     font-weight: 700;
     margin-bottom: 2rem;
     text-shadow: 0 0 8px rgba(20, 89, 221, 0.25);
     z-index: 1;
     position: relative;
+    
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: white;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
+  
 
   p {
-    color: #333;
+    color: #fff;
     font-size: clamp(1rem, 1vw + 0.8rem, 1.2rem);
     line-height: 1.8;
     margin-bottom: 1.5rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     z-index: 1;
     position: relative;
   }
+  
 }
 // Mission Section
 .mission {
@@ -251,6 +336,17 @@ $icon-accent: #90caf9;
     color: $primary-blue;
     margin-bottom: 3rem;
     font-size: clamp(1.2rem, 2vw + 1rem, 2.2rem);
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: $primary-blue;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   .principles-grid {
@@ -260,10 +356,10 @@ $icon-accent: #90caf9;
   }
 
   .principle-card {
-    background: #fff;
+    background: #7388fd1c;
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -298,11 +394,18 @@ $icon-accent: #90caf9;
 
 // Quiet by Design Section
 .quiet-design {
-  background: linear-gradient(135deg, rgba(20, 89, 221, 0.08), rgba(0, 123, 255, 0.05));
+  background-image: url('/assets/AI_About2.jpg'); // Adjust path as needed
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   padding: 4rem 2rem;
   margin-bottom: 4rem;
   border-radius: 1.25rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -314,27 +417,39 @@ $icon-accent: #90caf9;
     left: -30%;
     width: 160%;
     height: 160%;
-    background: radial-gradient(circle at center, rgba(20, 89, 221, 0.05), transparent 70%);
+    background: radial-gradient(circle at center, rgba(5, 6, 8, 0.801), transparent 70%);
     z-index: 0;
   }
 
   h2 {
-    color: $primary-blue;
+    color: white;
     font-size: clamp(1.5rem, 2.5vw + 1rem, 2.5rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
     position: relative;
     z-index: 1;
     text-shadow: 0 0 6px rgba(20, 89, 221, 0.15);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: white;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   p {
-    color: #333;
+    color: #fff; // Better contrast for image background
     font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto 1.5rem auto;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 1;
   }
@@ -387,13 +502,13 @@ $icon-accent: #90caf9;
 // Global Reach Section
 .global-reach {
   background: url('/assets/AI_Global.jpg') no-repeat center center/cover, 
-              linear-gradient(135deg, rgba(78, 171, 247, 0.363) 0%, rgba(100, 181, 246, 0.1) 100%);
+              linear-gradient(135deg, rgba(0, 0, 0, 0.575) 0%, rgba(0, 0, 0, 0.658) 100%);
   padding: 4rem 0;
   border-radius: 1rem;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.603);
 
   &::before {
     content: '';
@@ -413,6 +528,19 @@ $icon-accent: #90caf9;
     text-shadow: 0 2px 6px rgba(33, 150, 243, 0.5);
     z-index: 1;
     position: relative;
+    margin-top: -3%;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 5%;
+      height: 4px;
+      background-color: white;
+      margin: 0.75rem auto 0 auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
   }
 
   .reach-details {
