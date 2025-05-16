@@ -5,7 +5,7 @@
  * Date: [Today's Date]
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss']
 })
-export class ContactUsComponent implements OnInit {
+export class ContactUsComponent implements OnInit, AfterViewInit {
   breadcrumbs: Breadcrumb[] = [];
   contactForm: FormGroup;
   formSubmitted = false;
@@ -58,6 +58,42 @@ export class ContactUsComponent implements OnInit {
     this.breadcrumbs = [
       { label: 'Contact Us' }
     ];
+  }
+
+  async ngAfterViewInit(): Promise<void> {
+    if (typeof window !== 'undefined') {
+      const L = await import('leaflet');
+
+      // Vienna DC Tower 1 coordinates
+      const lat = 48.2331063;
+      const lng = 16.4142993;
+
+      const map = L.map('leaflet-map').setView([lat, lng], 16);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 20,
+      }).addTo(map);
+
+      // Use a red Leaflet marker icon
+      const redIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
+      L.marker([lat, lng], { icon: redIcon }).addTo(map)
+        .bindPopup(`
+          <div style="text-align:center; min-width:180px;">
+            <p style="margin:0 0 5px 0; font-size:14px;"><strong>DC Tower 1</strong></p>
+            <p style="margin:0 0 5px 0; font-size:12px;">Donau-City-Straße 7, 30. Etage</p>
+            <p style="margin:0; font-size:12px;">1220 Wien, Austria</p>
+          </div>
+        `).openPopup();
+    }
   }
 
   onSubmit(): void {

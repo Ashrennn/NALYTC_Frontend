@@ -8,4 +8,18 @@
   .home-container {
     padding: 1rem;
   }
+  .advantages {
+    padding: 2rem 0.5rem;
+  }
+  .advantages-grid {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  .advantage-card {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 } 

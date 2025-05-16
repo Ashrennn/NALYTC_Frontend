@@ -6,11 +6,62 @@
 
 @media (max-width: 767px) {
   .services-container {
-    padding: 1rem;
+    padding: 0.5rem;
+  }
+  .services-carousel {
+    flex-direction: column;
+    min-height: unset;
+    padding: 0.5rem 0.2rem;
+    align-items: center;
+    .service-card {
+      max-width: 98vw;
+      padding: 1.2rem 0.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
+      h2 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.98rem;
+      }
+      .service-icon i {
+        font-size: 2.2rem;
+      }
+      .service-features li {
+        font-size: 0.95rem;
+      }
+    }
+    .carousel-arrow {
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      margin: 0 0.5rem;
+      position: static;
+      display: inline-flex;
+    }
+    .desktop-arrows {
+      display: none !important;
+    }
+    .carousel-arrows-mobile {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      margin: 1.2rem 0 0.7rem 0;
+      width: 100%;
+      gap: 2.2rem;
+    }
+    .carousel-dots {
+      bottom: 8px;
+      margin-top: 0.2rem;
+      span {
+        width: 8px;
+        height: 8px;
+      }
+    }
   }
   .additional-grid {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
   }
 } 

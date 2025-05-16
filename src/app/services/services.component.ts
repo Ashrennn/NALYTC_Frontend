@@ -114,13 +114,13 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   nextCard() {
     this.animationClass = 'slide-in-right';
-    setTimeout(() => { this.animationClass = ''; }, 700);
+    setTimeout(() => { this.animationClass = ''; }, 300);
     this.currentIndex = (this.currentIndex + 1) % this.serviceCards.length;
   }
 
   prevCard() {
     this.animationClass = 'slide-in-left';
-    setTimeout(() => { this.animationClass = ''; }, 700);
+    setTimeout(() => { this.animationClass = ''; }, 300);
     this.currentIndex = (this.currentIndex - 1 + this.serviceCards.length) % this.serviceCards.length;
   }
 }
