@@ -11,6 +11,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-contact-us',
@@ -60,32 +61,27 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  async ngAfterViewInit(): Promise<void> {
+  ngAfterViewInit(): void {
     if (typeof window !== 'undefined') {
-      const L = await import('leaflet');
-
-      // Vienna DC Tower 1 coordinates
+      // ✅ Fix leaflet icon URLs for Firebase deploy
+      delete (L.Icon.Default.prototype as any)._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl:'assets/marker-nalytc.png',
+        iconUrl: 'assets/marker-nalytc.png',
+        shadowUrl: 'assets/marker-shadow.png',
+      });
+  
       const lat = 48.2331063;
       const lng = 16.4142993;
-
+  
       const map = L.map('leaflet-map').setView([lat, lng], 16);
-
+  
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         minZoom: 0,
         maxZoom: 20,
       }).addTo(map);
-
-      // Use a red Leaflet marker icon
-      const redIcon = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      });
-
-      L.marker([lat, lng], { icon: redIcon }).addTo(map)
+  
+      L.marker([lat, lng]).addTo(map)
         .bindPopup(`
           <div style="text-align:center; min-width:180px;">
             <p style="margin:0 0 5px 0; font-size:14px;"><strong>DC Tower 1</strong></p>
@@ -93,6 +89,9 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
             <p style="margin:0; font-size:12px;">1220 Wien, Austria</p>
           </div>
         `).openPopup();
+  
+      // Resize fix after map container becomes visible
+      setTimeout(() => map.invalidateSize(), 200);
     }
   }
 

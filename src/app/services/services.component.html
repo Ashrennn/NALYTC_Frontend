@@ -11,10 +11,6 @@
 
   <!-- Main Services Carousel -->
   <section class="services-carousel">
-    <!-- Desktop/Tablet Arrows (hidden on mobile) -->
-    <button class="carousel-arrow left desktop-arrows" (click)="prevCard()" aria-label="Previous Service">
-      <i class="fas fa-chevron-left"></i>
-    </button>
     <div class="service-card" *ngIf="serviceCards.length" [ngClass]="animationClass">
       <div class="service-icon">
         <i [class]="serviceCards[currentIndex].icon"></i>
@@ -27,20 +23,15 @@
         </li>
       </ul>
     </div>
-    <button class="carousel-arrow right desktop-arrows" (click)="nextCard()" aria-label="Next Service">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-    <!-- Mobile Arrows (below card) -->
-    <div class="carousel-arrows-mobile">
-      <button class="carousel-arrow left" (click)="prevCard()" aria-label="Previous Service">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="carousel-arrow right" (click)="nextCard()" aria-label="Next Service">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
+  
+    <!-- ✅ Clickable carousel dots -->
     <div class="carousel-dots">
-      <span *ngFor="let card of serviceCards; let i = index" [class.active]="i === currentIndex"></span>
+      <span
+        *ngFor="let card of serviceCards; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="setCurrentCard(i)"
+        style="cursor: pointer"
+      ></span>
     </div>
   </section>
 

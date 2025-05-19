@@ -16,7 +16,7 @@
   padding: 7rem 2rem;
   text-align: center;
   box-sizing: border-box;
-  margin-bottom: .01rem;
+  margin-bottom: 0.01rem;
   margin-top: -0.1rem;
   color: white;
   font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
@@ -24,17 +24,21 @@
   letter-spacing: 0.5px;
   z-index: 1;
 
-
+  // Background image without transitions
   &::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: url('/assets/AI_Contact.jpg') center center / cover no-repeat;
     opacity: 0.75;
-    filter: brightness(0.5);
+    filter: brightness(0.55);
     z-index: 0;
     margin-top: -1%;
     margin-bottom: -0.5%;
+    transition: none;  // No transition
   }
 
   > span {
@@ -50,31 +54,32 @@
     margin: 1rem auto 0;
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #2196f3, #64b5f6);
+    background: white;
     border-radius: 2px;
   }
 
+  // ✅ Mobile view
   @media (max-width: 600px) {
-    .page-title {
-      padding: 4rem 1rem;
-      margin-bottom: 1rem;
-      font-size: 2rem;
+    padding: 4rem 1rem 6rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+
+    &::before {
+      margin-bottom: 1%;
     }
-  
-    .page-title::after {
+
+    &::after {
       width: 60px;
     }
   }
-  
-  /* Tablets */
+
+  // ✅ Tablets
   @media (min-width: 601px) and (max-width: 992px) {
-    .page-title {
-      padding: 5rem 1.5rem;
-      margin-bottom: 0.75rem;
-      font-size: 2.75rem;
-    }
-  
-    .page-title::after {
+    padding: 5rem 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 2.75rem;
+
+    &::after {
       width: 70px;
     }
   }

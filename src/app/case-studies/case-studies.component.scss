@@ -37,9 +37,11 @@ body {
     background: url('/assets/AI_Case.jpg') center center / cover no-repeat;
     opacity: 0.95;
     z-index: 0;
+    margin-top: -1%;
+    margin-bottom: -0.5%;
   }
 
-  // Ensures the text is always above the ::before layer
+  // Content z-index override
   > span {
     position: relative;
     z-index: 2;
@@ -56,28 +58,33 @@ body {
     position: relative;
     z-index: 2;
   }
+}
 
-  @media (max-width: 600px) {
-    .page-title {
-      padding: 4rem 1rem;
-      margin-bottom: 2rem;
-      font-size: 2rem;
+// ✅ Mobile (≤600px)
+@media (max-width: 600px) {
+  .page-title {
+    padding: 4rem 1rem 6rem;
+    margin-bottom: 2rem; // tighter for mobile
+    font-size: 2rem;
+
+    &::before {
+      margin-bottom: 1%; // extend background visually downward
     }
-  
-    .page-title::after {
+
+    &::after {
       width: 60px;
     }
   }
-  
-  /* Tablet (601px to 992px) */
-  @media (min-width: 601px) and (max-width: 992px) {
-    .page-title {
-      padding: 5rem 1.5rem;
-      margin-bottom: 2.5rem;
-      font-size: 3rem;
-    }
-  
-    .page-title::after {
+}
+
+// ✅ Tablet (601px–992px)
+@media (min-width: 601px) and (max-width: 992px) {
+  .page-title {
+    padding: 5rem 1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 3rem;
+
+    &::after {
       width: 70px;
     }
   }

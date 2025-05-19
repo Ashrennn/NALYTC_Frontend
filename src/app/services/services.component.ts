@@ -22,12 +22,11 @@ import { Breadcrumb, BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb
 export class ServicesComponent implements OnInit, OnDestroy {
   breadcrumbs: Breadcrumb[] = [];
 
-  // Carousel logic
   serviceCards = [
     {
       icon: 'fas fa-microchip',
       title: 'GPU-Accelerated Servers',
-      desc: 'High-performance computing environments optimized for AI workloads and complex simulations.',
+      desc: 'High-performance computing environments optimized for AI workloads.',
       features: [
         'Custom GPU configurations',
         'High-speed networking',
@@ -69,6 +68,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
       ],
     },
   ];
+
   currentIndex = 0;
   intervalId: any;
   animationClass = '';
@@ -76,25 +76,20 @@ export class ServicesComponent implements OnInit, OnDestroy {
   constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Set page title
     this.title.setTitle('Services | NALYTC');
 
-    // Set meta tags
     this.meta.addTags([
       { name: 'description', content: 'Explore Nalytc services: AI systems, LLM training, developer tools, and enterprise technology solutions.' },
       { name: 'keywords', content: 'Services, AI, LLM, developer tools, enterprise, technology' },
-      // Open Graph
       { property: 'og:title', content: 'Services | NALYTC' },
       { property: 'og:description', content: 'Explore Nalytc services: AI systems, LLM training, developer tools, and enterprise technology solutions.' },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: window.location.href },
-      // Twitter Card
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'Services | NALYTC' },
       { name: 'twitter:description', content: 'Explore Nalytc services: AI systems, LLM training, developer tools, and enterprise technology solutions.' }
     ]);
 
-    // Set breadcrumbs from route data
     this.breadcrumbs = [
       { label: this.route.snapshot.data['breadcrumb'] }
     ];
@@ -109,7 +104,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
   startAutoSlide() {
     this.intervalId = setInterval(() => {
       this.nextCard();
-    }, 4000); // 4 seconds
+    }, 4000);
   }
 
   nextCard() {
@@ -122,5 +117,11 @@ export class ServicesComponent implements OnInit, OnDestroy {
     this.animationClass = 'slide-in-left';
     setTimeout(() => { this.animationClass = ''; }, 300);
     this.currentIndex = (this.currentIndex - 1 + this.serviceCards.length) % this.serviceCards.length;
+  }
+
+  setCurrentCard(index: number) {
+    if (index === this.currentIndex) return;
+    this.animationClass = index > this.currentIndex ? 'slide-in-right' : 'slide-in-left';
+    this.currentIndex = index;
   }
 }

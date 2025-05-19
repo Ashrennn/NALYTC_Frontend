@@ -5,7 +5,7 @@
  * Date: [Today's Date]
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -19,10 +19,9 @@ import { Breadcrumb } from '../shared/breadcrumb/breadcrumb.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   breadcrumbs: Breadcrumb[] = [];
 
-  // Replace testimonials with service slides for the carousel
   offerSlides = [
     {
       image: 'assets/AI_Systems.jpg',
@@ -50,37 +49,63 @@ export class HomeComponent implements OnInit, OnDestroy {
       description: 'End-to-end fine-tuning, dataset engineering, and deployment support for large language models and generative AI systems.'
     }
   ];
+
   currentOffer = 0;
   intervalId: any;
   slideDirection: 'none' | 'left' | 'right' = 'none';
 
+  @ViewChild('carousel') carouselRef!: ElementRef;
+  touchStartX = 0;
+  touchEndX = 0;
+
   constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Set page title
     this.title.setTitle('NALYTC | Engineering Intelligence. Scaling Innovation.');
 
-    // Set meta tags
     this.meta.addTags([
       { name: 'description', content: 'Nalytc delivers enterprise-grade technology solutions for AI, LLM, and developer tools from Dubai.' },
       { name: 'keywords', content: 'AI, LLM, developer tools, Dubai, technology, innovation' },
-      // Open Graph
       { property: 'og:title', content: 'NALYTC | Engineering Intelligence. Scaling Innovation.' },
       { property: 'og:description', content: 'Nalytc delivers enterprise-grade technology solutions for AI, LLM, and developer tools from Dubai.' },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: window.location.href },
-      // Twitter Card
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'NALYTC | Engineering Intelligence. Scaling Innovation.' },
       { name: 'twitter:description', content: 'Nalytc delivers enterprise-grade technology solutions for AI, LLM, and developer tools from Dubai.' }
     ]);
 
-    // Set breadcrumbs from route data
     this.breadcrumbs = [
       { label: this.route.snapshot.data['breadcrumb'] }
     ];
 
     this.startCarousel();
+  }
+
+  ngAfterViewInit(): void {
+    const carousel = this.carouselRef.nativeElement;
+
+    carousel.addEventListener('touchstart', (e: TouchEvent) => {
+      this.touchStartX = e.changedTouches[0].screenX;
+    });
+
+    carousel.addEventListener('touchend', (e: TouchEvent) => {
+      this.touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    });
+  }
+
+  handleSwipe(): void {
+    const deltaX = this.touchEndX - this.touchStartX;
+    const threshold = 50;
+
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        this.prevOffer();
+      } else {
+        this.nextOffer();
+      }
+    }
   }
 
   startCarousel() {
@@ -114,4 +139,4 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.stopCarousel();
   }
-} 
+}

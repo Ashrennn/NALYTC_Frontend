@@ -28,29 +28,73 @@
   <!-- What We Offer -->
   <section class="services offer-carousel-section">
     <h2>What We Offer</h2>
-    <div class="offer-carousel" [ngClass]="{'slide-left': slideDirection === 'left', 'slide-right': slideDirection === 'right'}">
+    <div
+      class="offer-carousel"
+      [ngClass]="{
+        'slide-left': slideDirection === 'left',
+        'slide-right': slideDirection === 'right'
+      }"
+    >
+      <!-- Previous Offer (Left Silhouette) -->
       <div class="offer-silhouette offer-silhouette-left">
-        <img [src]="offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].image" alt="Previous offer" class="offer-image-silhouette" />
-        <div class="offer-title-silhouette">{{ offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].title }}</div>
-      </div>
-      <button class="carousel-arrow left" (click)="prevOffer()" aria-label="Previous offering">&#8592;</button>
-      <div class="offer-card" [ngClass]="{'slide-left': slideDirection === 'left', 'slide-right': slideDirection === 'right'}">
-        <img [src]="offerSlides[currentOffer].image" alt="Offering image" class="offer-image" />
-        <div class="offer-content">
-          <h3 class="offer-title">{{ offerSlides[currentOffer].title }}</h3>
-          <p class="offer-description">{{ offerSlides[currentOffer].description }}</p>
+        <img
+          [src]="offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].image"
+          alt="Previous offer"
+          class="offer-image-silhouette"
+        />
+        <div class="offer-title-silhouette">
+          {{
+            offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length]
+              .title
+          }}
         </div>
       </div>
-      <button class="carousel-arrow right" (click)="nextOffer()" aria-label="Next offering">&#8594;</button>
+  
+      <!-- Current Offer (Main Card) -->
+      <div
+        class="offer-card"
+        [ngClass]="{
+          'slide-left': slideDirection === 'left',
+          'slide-right': slideDirection === 'right'
+        }"
+      >
+        <img
+          [src]="offerSlides[currentOffer].image"
+          alt="Offering image"
+          class="offer-image"
+        />
+        <div class="offer-content">
+          <h3 class="offer-title">{{ offerSlides[currentOffer].title }}</h3>
+          <p class="offer-description">
+            {{ offerSlides[currentOffer].description }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Next Offer (Right Silhouette) -->
       <div class="offer-silhouette offer-silhouette-right">
-        <img [src]="offerSlides[(currentOffer + 1) % offerSlides.length].image" alt="Next offer" class="offer-image-silhouette" />
-        <div class="offer-title-silhouette">{{ offerSlides[(currentOffer + 1) % offerSlides.length].title }}</div>
+        <img
+          [src]="offerSlides[(currentOffer + 1) % offerSlides.length].image"
+          alt="Next offer"
+          class="offer-image-silhouette"
+        />
+        <div class="offer-title-silhouette">
+          {{ offerSlides[(currentOffer + 1) % offerSlides.length].title }}
+        </div>
       </div>
     </div>
+  
+    <!-- Carousel Dots -->
     <div class="offer-dots">
-      <span *ngFor="let o of offerSlides; let i = index" class="dot" [class.active]="i === currentOffer" (click)="currentOffer = i"></span>
+      <span
+        *ngFor="let o of offerSlides; let i = index"
+        class="dot"
+        [class.active]="i === currentOffer"
+        (click)="currentOffer = i"
+      ></span>
     </div>
   </section>
+  
 
   <!-- Strategic Advantages -->
   <section class="advantages">

@@ -1,15 +1,38 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ServicesComponent } from './services/services.component';
-import { CaseStudiesComponent } from './case-studies/case-studies.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
-  { path: 'about', component: AboutComponent, data: { breadcrumb: 'About' } },
-  { path: 'services', component: ServicesComponent, data: { breadcrumb: 'Services' } },
-  { path: 'case-studies', component: CaseStudiesComponent, data: { breadcrumb: 'Case Studies' } },
-  { path: 'contact-us', component: ContactUsComponent, data: { breadcrumb: 'Contact Us' } },
-  { path: '**', redirectTo: '' }
-]; 
+  {
+    path: '',
+    component: HomeComponent,
+    data: { breadcrumb: 'Home' }
+  },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./about/about.component').then((m) => m.AboutComponent),
+    data: { breadcrumb: 'About' }
+  },
+  {
+    path: 'services',
+    loadComponent: () =>
+      import('./services/services.component').then((m) => m.ServicesComponent),
+    data: { breadcrumb: 'Services' }
+  },
+  {
+    path: 'case-studies',
+    loadComponent: () =>
+      import('./case-studies/case-studies.component').then((m) => m.CaseStudiesComponent),
+    data: { breadcrumb: 'Case Studies' }
+  },
+  {
+    path: 'contact-us',
+    loadComponent: () =>
+      import('./contact-us/contact-us.component').then((m) => m.ContactUsComponent),
+    data: { breadcrumb: 'Contact Us' }
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+];
