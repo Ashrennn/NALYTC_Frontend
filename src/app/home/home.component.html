@@ -41,6 +41,7 @@
           [src]="offerSlides[(currentOffer - 1 + offerSlides.length) % offerSlides.length].image"
           alt="Previous offer"
           class="offer-image-silhouette"
+          loading="lazy"
         />
         <div class="offer-title-silhouette">
           {{
@@ -62,6 +63,7 @@
           [src]="offerSlides[currentOffer].image"
           alt="Offering image"
           class="offer-image"
+          loading="lazy"
         />
         <div class="offer-content">
           <h3 class="offer-title">{{ offerSlides[currentOffer].title }}</h3>
@@ -77,6 +79,7 @@
           [src]="offerSlides[(currentOffer + 1) % offerSlides.length].image"
           alt="Next offer"
           class="offer-image-silhouette"
+          loading="lazy"
         />
         <div class="offer-title-silhouette">
           {{ offerSlides[(currentOffer + 1) % offerSlides.length].title }}
