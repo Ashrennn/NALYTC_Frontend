@@ -5,7 +5,7 @@
  * Date: [Today's Date]
  */
 
-import { Component, OnInit, ElementRef, QueryList, ViewChildren, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, QueryList, ViewChildren, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -58,7 +58,12 @@ export class CaseStudiesComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('caseCard') caseCardElems!: QueryList<ElementRef>;
 
-  constructor(private title: Title, private meta: Meta, private route: ActivatedRoute) {}
+  constructor(
+    private title: Title,
+    private meta: Meta,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef  // Inject ChangeDetectorRef here
+  ) {}
 
   ngOnInit(): void {
     // SEO
@@ -87,11 +92,19 @@ export class CaseStudiesComponent implements OnInit, AfterViewInit {
   @HostListener('window:scroll', [])
   onScroll() {
     if (!this.caseCardElems) return;
+
+    let changed = false;
+
     this.caseCardElems.forEach((elem, idx) => {
       const rect = elem.nativeElement.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 80) {
+      if (rect.top < window.innerHeight - 80 && !this.caseStudies[idx].visible) {
         this.caseStudies[idx].visible = true;
+        changed = true;
       }
     });
+
+    if (changed) {
+      this.cd.detectChanges(); // Tell Angular to update view immediately
+    }
   }
 }

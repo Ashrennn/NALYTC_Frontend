@@ -37,7 +37,7 @@ $icon-accent: #90caf9;
       rgba(0, 0, 0, 0.55),
       rgba(0, 0, 0, 0.4)
     ),
-    url('/assets/AI_About.jpg') center center / cover no-repeat;
+    url('/assets/AI_About.webp') center center / cover no-repeat;
 
   color: white;
   overflow: hidden;
@@ -155,7 +155,7 @@ $icon-accent: #90caf9;
   box-shadow: none;
 
   color: white;
-  transition: all 0.3s ease-in-out;
+  transition: none;
 
   // Optional: Keep background accents or remove for full transparency
   &::before {
@@ -178,10 +178,6 @@ $icon-accent: #90caf9;
     z-index: 1;
   }
 
-  &:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: none;
-  }
 
   h2 {
     font-size: clamp(1.8rem, 2.5vw + 1rem, 3rem);
@@ -252,7 +248,7 @@ $icon-accent: #90caf9;
   margin-right: calc(-50vw + 50%);
 
   // Background image
-  background-image: url('/assets/AI_Company.jpg'); // Update path as needed
+  background-image: url('/assets/AI_Company.webp'); // Update path as needed
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -336,7 +332,7 @@ $icon-accent: #90caf9;
     -webkit-text-fill-color: transparent;
     z-index: 1;
     position: relative;
-    animation: pulseIcon 2.5s infinite ease-in-out;
+    animation: none;
   }
 
   h2 {
@@ -360,16 +356,7 @@ $icon-accent: #90caf9;
     position: relative;
   }
 
-  @keyframes pulseIcon {
-    0%, 100% {
-      transform: scale(1);
-      filter: drop-shadow(0 0 8px rgba(20, 89, 221, 0.4));
-    }
-    50% {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 12px rgba(20, 89, 221, 0.6));
-    }
-  }
+
 }
 // Principles Section
 .principles {
@@ -405,13 +392,8 @@ $icon-accent: #90caf9;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
 
     i {
       font-size: 3rem;
@@ -438,7 +420,7 @@ $icon-accent: #90caf9;
 
 // Quiet by Design Section
 .quiet-design {
-  background-image: url('/assets/AI_About2.jpg'); // Adjust path as needed
+  background-image: url('/assets/AI_About2.webp'); // Adjust path as needed
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -545,7 +527,7 @@ $icon-accent: #90caf9;
 
 // Global Reach Section
 .global-reach {
-  background: url('/assets/AI_Global.jpg') no-repeat center center/cover, 
+  background: url('/assets/AI_Global.webp') no-repeat center center/cover, 
               linear-gradient(135deg, rgba(0, 0, 0, 0.575) 0%, rgba(0, 0, 0, 0.658) 100%);
   padding: 4rem 0;
   border-radius: 1rem;
@@ -600,17 +582,12 @@ $icon-accent: #90caf9;
     padding: 1.5rem;
     background: rgba(89, 157, 247, 0.329);
     border-radius: 0.5rem;
-    transition: all 0.3s ease;
+    transition: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
 
     /* Apply text shadow to the items for improved readability */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6), -2px -2px 6px rgba(0, 0, 0, 0.6);
 
-    &:hover {
-      transform: translateX(10px);
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
 
     i {
       font-size: 2.5rem;
@@ -646,11 +623,8 @@ $icon-accent: #90caf9;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: none;
 
-    &:hover {
-      transform: translateY(-5px);
-    }
 
     i {
       font-size: 2.5rem;

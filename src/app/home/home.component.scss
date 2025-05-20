@@ -17,31 +17,29 @@ $gradient-end: #0d47a1;
   padding: 2rem;
 }
 
-// Icon Base Styles
 i {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: whitesmoke;
 }
 
-// Hero Section
 .hero {
   display: flex;
-  align-items: flex-start; // ← move content to top
+  align-items: flex-start;
   justify-content: space-between;
-  padding-top: 0.3rem; // optional: add spacing from top edge
+  padding-top: 0.3rem;
 
   .hero-left {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; // move content toward the top
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 1.5rem;
     max-width: 600px;
     z-index: 2;
-    padding-top: 3rem; // push h1 & p slightly up
-    transform: translateX(-1rem); // shift content slightly left
+    padding-top: 3rem;
+    transform: translateX(-1rem);
 
     i {
       font-size: 3rem;
@@ -52,7 +50,6 @@ i {
       font-size: clamp(2rem, 4vw + 1rem, 3rem);
       font-weight: 700;
       color: #0d47a1;
-      
     }
 
     p {
@@ -78,10 +75,10 @@ i {
         border-radius: 0.85rem;
         cursor: pointer;
         box-shadow: 0 8px 24px rgba(20, 89, 221, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: none;
         position: relative;
         overflow: hidden;
-      
+
         &::before {
           content: '';
           position: absolute;
@@ -91,20 +88,20 @@ i {
           height: 200%;
           background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
           opacity: 0;
-          transition: opacity 0.5s ease;
+          transition: none;
         }
-      
+
         &:hover::before {
           opacity: 1;
           animation: shine 1s ease forwards;
         }
-      
+
         &:hover {
           transform: translateY(-2px) scale(1.02);
           box-shadow: 0 12px 30px rgba(20, 89, 221, 0.45), 0 6px 15px rgba(0, 0, 0, 0.1);
         }
       }
-      
+
       @keyframes shine {
         from {
           transform: translateX(-50%) translateY(-50%) rotate(0deg);
@@ -119,10 +116,10 @@ i {
   .hero-right {
     flex: 1;
     display: flex;
-    justify-content: flex-end; // push robot more to the right
+    justify-content: flex-end;
     align-items: center;
     position: relative;
-    padding-right: 2rem; // add some extra push to the edge
+    padding-right: 2rem;
 
     .ai-robot {
       width: 100%;
@@ -182,8 +179,64 @@ i {
     
       .ai-robot {
         max-width: 80%;
-        margin: 0 auto; // centers horizontally
-        display: block; // ensures it's treated like a block-level element
+        margin: 0 auto;
+        display: block;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero {
+      flex-direction: column;
+      padding: 3rem 2rem;
+  
+      .hero-left,
+      .hero-right {
+        flex: none;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        transform: none;
+      }
+  
+      .hero-left {
+        padding-top: 1rem;
+        max-width: 90%;
+        margin: 0 auto;
+  
+        h1 {
+          text-align: center;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+  
+        p {
+          text-align: center;
+          margin-top: 0;
+          margin-bottom: 1.25rem;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+  
+        .cta-buttons {
+          justify-content: center;
+          margin-top: 1.5rem;
+  
+          button {
+            font-size: 1rem;
+            padding: 0.65rem 1.5rem;
+          }
+        }
+      }
+  
+      .hero-right {
+        margin-top: 2rem;
+        padding-right: 0;
+  
+        .ai-robot {
+          max-width: 55%; // made smaller
+          margin: 0 auto;
+          display: block;
+        }
       }
     }
   }
@@ -193,7 +246,7 @@ i {
 // About Section
 .about {
   position: relative;
-  width: 100vw; /* full viewport width */
+  width: 100vw;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
@@ -204,12 +257,12 @@ i {
   overflow: hidden;
   z-index: 1;
 
-  // Base dark overlay for readability
+  // Dark overlay + WebP background
   background: 
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/assets/Who_we_are.jpg');
+    url('/assets/Who_we_are.webp');
   background-size: cover;
-  background-position: flex;
+  background-position: center;
   background-repeat: no-repeat;
 
   // Glow on text content
@@ -222,7 +275,7 @@ i {
     color: #ffffff;
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
+    transition: none;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
@@ -233,7 +286,7 @@ i {
     margin-bottom: 3rem;
     margin-top: -0.2rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-    animation: glowPulse 4s ease-in-out infinite alternate;
+    animation: none;
 
     &::after {
       content: "";
@@ -255,97 +308,26 @@ i {
     font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
     color: #f0f0f0;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
-    animation: fadeGlowText 6s ease-in-out infinite alternate;
-  }
-
-  &:hover {
-    transform: translateY(-4px);
-  }
-
-  i:hover {
-    transform: scale(1.2) rotate(5deg);
+    animation: none;
   }
 }
 
 // Entry animation
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 // Glow animations
-@keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  }
-  100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  }
-}
 
-@keyframes fadeGlowText {
-  0% {
-    opacity: 0.8;
-    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
-  }
-  100% {
-    opacity: 1;
-    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.3);
-  }
-}
 
 // Entry animation
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 
 // Subtle animated light
-@keyframes subtleGlow {
-  0% {
-    background-position: 20% 30%, 80% 70%;
-  }
-  50% {
-    background-position: 25% 35%, 75% 65%;
-  }
-  100% {
-    background-position: 20% 30%, 80% 70%;
-  }
-}
+
 
 // Glow pulse for h2
-@keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  }
-  100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  }
-}
+
 
 // Gentle glow fade for p
-@keyframes fadeGlowText {
-  0% {
-    opacity: 0.8;
-    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
-  }
-  100% {
-    opacity: 1;
-    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.3);
-  }
-}
+
 
 // Services Section
 .services {
@@ -359,7 +341,7 @@ i {
     font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
     font-weight: 800;
     margin-bottom: 4rem;
-    animation: fadeInUp 0.8s ease-in-out both;
+    animation: none;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     &::after {
@@ -406,7 +388,7 @@ i {
     -webkit-backdrop-filter: blur(8px) saturate(120%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.2s ease-in-out;
+    transition: none;
   
     /** Size Constraints **/
     min-height: 130px;
@@ -416,11 +398,7 @@ i {
   
     font-size: 0.8rem;
   
-    &:hover {
-      transform: scale(1.015);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      border-color: $primary-blue;
-    }
+    
   
     .service-icon {
       width: 60px;
@@ -454,16 +432,6 @@ i {
     }
   }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   // ✅ Responsive: make service cards stack and add spacing on mobile
 
@@ -491,7 +459,7 @@ i {
     transform: translateX(-50%);
     width: 100vw;
     height: 100%;
-    background-image: url('/assets/AI_Strategic.jpg'); // adjust path
+    background-image: url('/assets/AI_Strategic.webp'); // adjust path
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -538,7 +506,7 @@ i {
     text-align: center;
     box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
     backdrop-filter: blur(16px);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: none;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -552,7 +520,7 @@ i {
       width: 200%;
       height: 200%;
       background: conic-gradient(from 180deg at 50% 50%, #1459dd, #02a290, #1459dd);
-      animation: rotateBorder 6s linear infinite;
+      animation: none;
       z-index: 0;
       opacity: 0.05;
     }
@@ -564,7 +532,7 @@ i {
       border-radius: 1rem;
       box-shadow: 0 0 15px rgba(20, 89, 221, 0.15), 0 0 25px rgba(2, 162, 144, 0.1);
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: none;
       z-index: 0;
     }
 
@@ -577,7 +545,7 @@ i {
       font-size: 2.5rem;
       color: white;
       margin-bottom: 1rem;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      transition: none;
     }
 
     h3 {
@@ -592,30 +560,15 @@ i {
       font-size: clamp(1rem, 1vw + 0.8rem, 1.05rem);
       line-height: 1.6;
     }
-
-    &:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-
-      &::after {
-        opacity: 1;
-      }
-
-      i {
-        transform: scale(1.1);
-        text-shadow: 0 0 6px rgba(20, 89, 221, 0.3);
+    @media (max-width: 768px) {
+      .advantages-grid {
+        grid-template-columns: 1fr;
       }
     }
+
   }
 
-  @keyframes rotateBorder {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  
 }
 
 // Impact Section
@@ -664,7 +617,7 @@ i {
     text-align: center;
     box-shadow: 0 4px 6px rgba(9, 52, 243, 0.5);
     backdrop-filter: blur(16px);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: none;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -677,7 +630,7 @@ i {
       width: 200%;
       height: 200%;
       background: conic-gradient(from 180deg at 50% 50%, #1459dd, #02a290, #1459dd);
-      animation: rotateBorder 6s linear infinite;
+      animation: none;
       z-index: 0;
       opacity: 0.05;
     }
@@ -689,7 +642,7 @@ i {
       border-radius: 1rem;
       box-shadow: 0 0 15px rgba(20, 89, 221, 0.15), 0 0 25px rgba(2, 162, 144, 0.1);
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: none;
       z-index: 0;
     }
 
@@ -705,7 +658,7 @@ i {
       border-radius: 1rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
+      transition: none;
     }
 
     @media (max-width: 600px) {
@@ -715,9 +668,6 @@ i {
   }
 }
 
-    &:hover img.service-icon {
-      transform: scale(1.05);
-    }
 
     h3 {
       color: $primary-blue;
@@ -731,25 +681,8 @@ i {
       font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
       line-height: 1.6;
     }
-
-    &:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-
-      &::after {
-        opacity: 1;
-      }
-    }
   }
 
-  @keyframes rotateBorder {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 }
 
 
@@ -761,7 +694,7 @@ i {
   color: white;
   background:
     linear-gradient(rgba(97, 124, 241, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/assets/AI_Build.jpg');
+    url('/assets/AI_Build.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -799,7 +732,7 @@ i {
       border-radius: 0.85rem;
       cursor: pointer;
       box-shadow: 0 8px 24px rgba(20, 89, 221, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      transition: none;
       position: relative;
       overflow: hidden;
       min-width: 180px;   // Ensure a minimum button width
@@ -814,7 +747,7 @@ i {
         height: 200%;
         background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
         opacity: 0;
-        transition: opacity 0.5s ease;
+        transition: none;
       }
 
       &:hover::before {
@@ -875,7 +808,7 @@ i {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: fadeInUp 0.7s;
+    animation: none;
   }
 
   .testimonial-avatar {
@@ -928,19 +861,8 @@ i {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
+    transition: none;
     z-index: 3;
-  }
-  .carousel-arrow:hover {
-    background: #2196f3;
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .carousel-arrow.left {
-    margin-right: 1rem;
-  }
-  .carousel-arrow.right {
-    margin-left: 1rem;
   }
 
   .testimonial-dots {
@@ -956,7 +878,7 @@ i {
     background: #fff;
     opacity: 0.5;
     cursor: pointer;
-    transition: opacity 0.2s, background 0.2s;
+    transition: none;
     border: 2px solid #2196f3;
   }
   .dot.active {
@@ -1052,8 +974,8 @@ i {
     pointer-events: none;
     z-index: 1;
     position: relative;
-    animation: silhouetteFadeIn 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transition: opacity 0.3s, filter 0.3s;
+    animation: none;
+    transition: none;
   }
   .offer-carousel.slide-left, .offer-card.slide-left {
     animation: none;
@@ -1070,7 +992,7 @@ i {
     margin-bottom: 0.7rem;
     box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
     border: 2px solid #e3f0ff;
-    transition: box-shadow 0.3s, border 0.3s;
+    transition: none;
   }
   .offer-title-silhouette {
     font-size: 1rem;
@@ -1112,7 +1034,7 @@ i {
     background: #2196f3;
     opacity: 0.3;
     cursor: pointer;
-    transition: opacity 0.2s, background 0.2s;
+    transition: none;
     border: 2px solid #2196f3;
   }
   .dot.active {

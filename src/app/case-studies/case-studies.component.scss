@@ -34,7 +34,7 @@ body {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('/assets/AI_Case.jpg') center center / cover no-repeat;
+    background: url('/assets/AI_Case.webp') center center / cover no-repeat;
     opacity: 0.95;
     z-index: 0;
     margin-top: -1%;
@@ -105,7 +105,7 @@ body {
   border-radius: 1.25rem;
   box-shadow: 0 8px 32px 0 rgba(33, 150, 243, 0.10), 0 2px 8px 0 rgba(100, 181, 246, 0.10);
   padding: 0;
-  transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+  transition: none;
   border-left: 8px solid var(--accent-blue, #64b5f6);
   display: flex;
   align-items: stretch;
@@ -115,10 +115,10 @@ body {
   overflow: hidden;
   position: relative;
   backdrop-filter: blur(6px) saturate(1.1);
-  animation: floatCaseCard 5s cubic-bezier(0.4, 0.2, 0.2, 1) infinite alternate;
+  animation: none;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: none;
 }
 
 .case-study-card.show-on-scroll {
@@ -126,10 +126,7 @@ body {
   transform: translateY(0);
 }
 
-@keyframes floatCaseCard {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px) scale(1.012); }
-}
+
 
 .case-study-card::before {
   content: '';
@@ -141,11 +138,6 @@ body {
   z-index: 2;
 }
 
-.case-study-card:hover {
-  box-shadow: 0 16px 48px 0 rgba(33, 150, 243, 0.18), 0 4px 16px 0 rgba(100, 181, 246, 0.16);
-  border-left: 8px solid #2196f3;
-  transform: translateY(-8px) scale(1.018);
-}
 
 .case-study-img {
   max-width: 350px;
